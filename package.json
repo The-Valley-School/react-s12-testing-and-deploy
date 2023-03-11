@@ -17,7 +17,8 @@
     "build": "react-scripts build",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
