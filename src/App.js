@@ -1,6 +1,6 @@
 import './App.scss';
 import React from 'react';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { HashRouter, Link, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import NotesPage from './pages/NotesPage';
 import TogglablePage from './pages/TogglablePage';
@@ -10,7 +10,7 @@ function App() {
     <div className='App'>
       <h1>Prueba de testing</h1>
 
-      <BrowserRouter>
+      <HashRouter>
         <div className='links'>
           <Link to='/'>HomePage</Link>
           <br />
@@ -25,7 +25,7 @@ function App() {
           <Route path='/notes' element={<NotesPage></NotesPage>}></Route>
           <Route path='/toggles' element={<TogglablePage></TogglablePage>}></Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
