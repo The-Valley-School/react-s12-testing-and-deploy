@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Note from './Note';
 
 describe('Note component', () => {
@@ -12,7 +12,7 @@ describe('Note component', () => {
       content: 'Poner una lavadora',
       important: false,
     };
-    mockFunction = () => console.log('Mock');
+    mockFunction = jest.fn();
     component = render(<Note note={mockNote} toggleImportance={mockFunction}></Note>);
   });
 
@@ -28,5 +28,11 @@ describe('Note component', () => {
     mockNote.important = true;
     component = render(<Note note={mockNote} toggleImportance={mockFunction}></Note>);
     expect(component.container).toHaveTextContent('make not important');
+  });
+
+  test('call the toggleImportance function when click the button', () => {
+    const button = component.getByText('make important');
+    fireEvent.click(button);
+    expect(mockFunction).toHaveBeenCalledTimes(1);
   });
 });

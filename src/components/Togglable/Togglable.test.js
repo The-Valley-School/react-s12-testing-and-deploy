@@ -1,0 +1,32 @@
+import { fireEvent, render } from '@testing-library/react';
+import Togglable from './Togglable';
+
+describe('Togglable component', () => {
+  let component;
+
+  beforeEach(() => {
+    component = render(
+      <Togglable buttonLabel='SHOW'>
+        <p>Hola</p>
+      </Togglable>
+    );
+  });
+
+  test('checks the component is rendering the button', () => {
+    expect(component.container).toHaveTextContent('SHOW');
+  });
+
+  test('children is hidden on start', () => {
+    const div = component.container.querySelector('.togglableContent');
+    expect(div).toHaveStyle('display: none');
+  });
+
+  test('children is visible when click the button', () => {
+    const div = component.container.querySelector('.togglableContent');
+    const button = component.getByText('SHOW');
+
+    fireEvent.click(button);
+
+    expect(div).toHaveStyle('display: block');
+  });
+});
