@@ -1,11 +1,23 @@
 import './App.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Link, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import NotesPage from './pages/NotesPage';
 import TogglablePage from './pages/TogglablePage';
 
 function App() {
+  const [images, setImages] = React.useState([]);
+
+  useEffect(() => {
+    const options = { headers: { Authorization: 'jbrkAPJ1xdj9nGG4LiHXkebrcgimWkwpnCsyfUoKlEhOgWAY4F1ggR2P' } };
+    const finalUrl = 'https://api.pexels.com/v1/search?query=car';
+    fetch(finalUrl, options)
+      .then((data) => data.json())
+      .then((dataParsed) => {
+        setImages(dataParsed.photos);
+      });
+  }, []);
+
   return (
     <div className='App'>
       <h1>Hola amigos!</h1>
@@ -26,6 +38,11 @@ function App() {
           <Route path='/toggles' element={<TogglablePage></TogglablePage>}></Route>
         </Routes>
       </HashRouter>
+
+      <p>Imágenes:</p>
+      {images.map((image) => (
+        <img key={image.id} src={image.src.small} />
+      ))}
     </div>
   );
 }
