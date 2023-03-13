@@ -11,6 +11,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 function App() {
   const [images, setImages] = React.useState([]);
 
+  // Ask the api images
   useEffect(() => {
     const options = { headers: { Authorization: API_KEY } };
     const finalUrl = API_URL + '?query=car';
