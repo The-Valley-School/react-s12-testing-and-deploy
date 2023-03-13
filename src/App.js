@@ -5,12 +5,15 @@ import HomePage from './pages/HomePage';
 import NotesPage from './pages/NotesPage';
 import TogglablePage from './pages/TogglablePage';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+const API_URL = process.env.REACT_APP_API_URL;
+
 function App() {
   const [images, setImages] = React.useState([]);
 
   useEffect(() => {
-    const options = { headers: { Authorization: 'jbrkAPJ1xdj9nGG4LiHXkebrcgimWkwpnCsyfUoKlEhOgWAY4F1ggR2P' } };
-    const finalUrl = 'https://api.pexels.com/v1/search?query=car';
+    const options = { headers: { Authorization: API_KEY } };
+    const finalUrl = API_URL + '?query=car';
     fetch(finalUrl, options)
       .then((data) => data.json())
       .then((dataParsed) => {
