@@ -8,7 +8,7 @@ import TogglablePage from './pages/TogglablePage';
 function App() {
   return (
     <div className='App'>
-      <h1>Prueba de testing</h1>
+      <h1>Hola amigos!</h1>
 
       <HashRouter>
         <div className='links'>
